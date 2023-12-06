@@ -6,12 +6,13 @@
 #include "SnakeEntity.h"
 #include "InputEntity.h"
 
-void Draw_All(Context *ctx){
-    Snake_Draw(&ctx->snake);
+void Draw_All(Context *ctx) {
+    SnakeEntity *snake = &ctx->snake;
+    Snake_Draw(snake);
 }
 
 int main() {
-    InitWindow(400, 400, "cyh");
+    InitWindow(400, 400, "snake");
     SetTargetFPS(60);
     Context ctx = {0};
     ContextInit(&ctx);
@@ -23,12 +24,16 @@ int main() {
 
         Input_Process(&ctx.input);
 
-        Snake_Move(&ctx.snake,ctx.input.moveAxis,dt);
+        ctx.snakeMoveTimer -= dt;
 
-        
+        if (ctx.snakeMoveTimer <= 0) {
+            SnakeEntity *snake = &ctx.snake;
+            ctx.snakeMoveTimer = ctx.snakeMoveInterval;
+            Snake_Move(snake, ctx.input.moveAxis);
+        }
+
         // FoodEntity *food = &ctx.foods[0];
         // FoodEntity_Draw(food);
-
 
         Draw_All(&ctx);
         EndDrawing();

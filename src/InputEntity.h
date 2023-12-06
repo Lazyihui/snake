@@ -12,12 +12,19 @@ typedef struct InputEntity {
 void Input_Process(InputEntity *input) {
     if (IsKeyDown(KEY_W)) {
         input->moveAxis.y = -1;
+        input->moveAxis.x = 0;
     } else if (IsKeyDown(KEY_S)) {
         input->moveAxis.y = 1;
+        input->moveAxis.x = 0;
+
     } else if (IsKeyDown(KEY_A)) {
         input->moveAxis.x = -1;
-    }else
+        input->moveAxis.y = 0;
 
+    } else if (IsKeyDown(KEY_D)) {
+        input->moveAxis.x = 1;
+        input->moveAxis.y = 0;
+    }
 }
 
 #endif

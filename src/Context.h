@@ -10,6 +10,9 @@ typedef struct Context {
     InputEntity input;
 
     SnakeEntity snake;
+    int snakelongth;
+    float snakeMoveTimer;
+    float snakeMoveInterval;
 
     FoodEntity foods[10];
     int foodCount;
@@ -17,20 +20,24 @@ typedef struct Context {
 } Context;
 
 void ContextInit(Context *ctx) {
+    
 
+    ctx->snakeMoveTimer=0.2;
+    ctx->snakeMoveInterval=0.2;
+    ctx->snakelongth=1;
     SnakeEntity *snake = &ctx->snake;
     snake->color = RED;
-    snake->hight = 15;
-    snake->width = 15;
-    snake->pos.x = 400;
-    snake->pos.y = 200;
-    snake->speed = 150;
+    snake->size = 15;
+    snake->pos.x = 0;
+    snake->pos.y = 0;
+    snake->interval = 15;
 
     ctx->foodCount=1;
     FoodEntity *foods = &ctx->foods[0];
     foods->color = GRAY;
     foods->pos = GetVecort_Rand();
     foods->radius = 10;
+
 }
 
 #endif

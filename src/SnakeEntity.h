@@ -3,46 +3,28 @@
 #include <stdio.h>
 #include "..\include\raylib.h"
 #include "..\include\raymath.h"
+
 typedef struct SnakeEntity {
 
     Vector2 pos;
     Color color;
-    float speed;
-    float width;
-    float hight;
+    float interval;
+    float size;
+    Vector2 bodies[40 * 40];
+    int bodycount;
 
 } SnakeEntity;
 
-
-
-void Snake_Move(SnakeEntity *snake, Vector2 moveAxis, float dt) {
+void Snake_Move(SnakeEntity *snake, Vector2 moveAxis) {
     Vector2 *posptr = &snake->pos;
-    Vector2 offset = Vector2Normalize(moveAxis);
-    offset = Vector2Scale(offset, snake->speed * dt);
-    *posptr = Vector2Add(*posptr, offset);
-    //////////////////////////////////////////////////////////////////////边界/////////////有问题
-    if (posptr->x >= 800) {
-        posptr->x = 800;
-    }
-    if (posptr->x <= 0) {
-        posptr->x = 0;
-    }
-    if (posptr->y >= 450) {
-        posptr->y = 450;
-    }
-    if (posptr->y <= 0) {
-        posptr->y = 0;
-    }
+    *posptr = Vector2Add(*posptr, moveAxis);
 }
 
-
-
-
-void Snake_Draw(SnakeEntity *snake){
-    DrawRectangle(snake->pos.x,snake->pos.y,snake->width,snake->hight,snake->color);
+void Snake_Draw(SnakeEntity *snake) {
+    float size = snake->size;
+    Vector2 pos = snake->pos;
+    pos = Vector2Scale(pos, size);
+    DrawRectangleV(pos, (Vector2){size, size}, snake->color);
 }
 #endif
 
-
-
-/// 长度？ 就是画一条线
