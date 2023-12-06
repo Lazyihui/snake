@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "dientity.h": "c",
+        "raylib.h": "c",
+        "common.h": "c",
+        "controller.h": "c",
+        "context.h": "c",
+        "planeentity.h": "c",
+        "raymath.h": "c",
+        "monsterentity.h": "c",
+        "bulletentity.h": "c",
+        "stdio.h": "c",
+        "inputentity.h": "c"
+    }
+}
