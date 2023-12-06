@@ -28,9 +28,9 @@ void ContextInit(Context *ctx) {
     SnakeEntity *snake = &ctx->snake;
     snake->color = RED;
     snake->size = 15;
-    snake->pos.x = 0;
-    snake->pos.y = 0;
-    snake->interval = 15;
+    snake->bodycount=1;
+
+
 
     ctx->foodCount=1;
     FoodEntity *foods = &ctx->foods[0];

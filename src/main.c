@@ -32,9 +32,11 @@ int main() {
             Snake_Move(snake, ctx.input.moveAxis);
         }
 
-        // FoodEntity *food = &ctx.foods[0];
-        // FoodEntity_Draw(food);
+        if(IsKeyPressed(KEY_SPACE)){
+        Snake_Eat(&ctx.snake);
 
+        }
+        
         Draw_All(&ctx);
         EndDrawing();
     }
