@@ -9,6 +9,12 @@
 void Draw_All(Context *ctx) {
     SnakeEntity *snake = &ctx->snake;
     Snake_Draw(snake);
+
+    for (int i = 0; i < ctx->foodCount; i++) {
+
+        FoodEntity *food = &ctx->foods[i];
+        FoodEntity_Draw(food);
+    }
 }
 
 int main() {
@@ -32,11 +38,29 @@ int main() {
             Snake_Move(snake, ctx.input.moveAxis);
         }
 
-        if(IsKeyPressed(KEY_SPACE)){
+        ctx.foodSpawnTimer -= dt;
+        if (ctx.foodSpawnTimer <= 0) {
+            int times = 2;
+
+            for (int i = 0; i < times; i++) {
+                ctx.foodCount += 1;
+
+                FoodEntity food = (FoodEntity){0};
+
+                food.color = GRAY;
+                food.pos = GetVecort_Rand();
+                food.radius = 10;
+
+                ctx.foods[ctx.foodCount - 1] = food;
+                ctx.foodSpawnTimer = ctx.foodSpawnInterval;
+                if (ctx.foodCount % 3 == 0) {
+                    ctx.foods->radius = 8;
+                }
+            }
+        }
+
         Snake_Eat(&ctx.snake);
 
-        }
-        
         Draw_All(&ctx);
         EndDrawing();
     }

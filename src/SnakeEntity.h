@@ -37,8 +37,9 @@ void Snake_Draw(SnakeEntity *snake) {
 
         Vector2 pos = snake->bodies[i];
         pos = Vector2Scale(pos, size);
-        DrawRectangleV(pos, (Vector2){size, size}, snake->color);
+        DrawRectangleV(pos,(Vector2){size, size}, snake->color);
     }
 }
+
 
 #endif

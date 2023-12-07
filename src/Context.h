@@ -16,28 +16,24 @@ typedef struct Context {
 
     FoodEntity foods[10];
     int foodCount;
+    float foodSpawnTimer;
+    float foodSpawnInterval;
 
 } Context;
 
 void ContextInit(Context *ctx) {
-    
 
-    ctx->snakeMoveTimer=0.2;
-    ctx->snakeMoveInterval=0.2;
-    ctx->snakelongth=1;
+    ctx->snakeMoveTimer = 0.2;
+    ctx->snakeMoveInterval = 0.2;
+    ctx->snakelongth = 1;
     SnakeEntity *snake = &ctx->snake;
     snake->color = RED;
     snake->size = 15;
-    snake->bodycount=1;
+    snake->bodycount = 1;
 
-
-
-    ctx->foodCount=1;
-    FoodEntity *foods = &ctx->foods[0];
-    foods->color = GRAY;
-    foods->pos = GetVecort_Rand();
-    foods->radius = 10;
-
+    ctx->foodCount=0;
+    ctx->foodSpawnInterval=5;
+    ctx->foodSpawnTimer=5;
 }
 
 #endif

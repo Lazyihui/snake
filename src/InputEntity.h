@@ -6,7 +6,6 @@
 
 typedef struct InputEntity {
     Vector2 moveAxis;
-
 } InputEntity;
 
 void Input_Process(InputEntity *input) {

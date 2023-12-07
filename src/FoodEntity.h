@@ -16,4 +16,5 @@ void FoodEntity_Draw(FoodEntity *food) {
     DrawCircle(food->pos.x, food->pos.y, food->radius, food->color);
 }
 
+
 #endif
