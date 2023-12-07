@@ -59,8 +59,13 @@ int main() {
             }
         }
 
-        Snake_Eat(&ctx.snake);
+        for (int i = 0; i < ctx.foodCount; i++) {
+            FoodEntity *food = &ctx.foods[i];
+            if (food->pos.x == ctx.snake.bodies->x && food->pos.y == ctx.snake.bodies->y) {
 
+                Snake_Eat(&ctx.snake);
+            }
+        }
         Draw_All(&ctx);
         EndDrawing();
     }
