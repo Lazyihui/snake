@@ -37,7 +37,7 @@ int main() {
             SnakeEntity *snake = &ctx.snake;
             ctx.snakeMoveTimer = ctx.snakeMoveInterval;
             Snake_Move(snake, ctx.input.moveAxis);
-            printf("snake.x=%d  sanke.y=%d\r\n",snake->bodies->x,snake->bodies->y);
+            // printf("snake.x=%d  sanke.y=%d\r\n",snake->bodies->x,snake->bodies->y);
         }
 
         ctx.foodSpawnTimer -= dt;
@@ -53,8 +53,8 @@ int main() {
                 food.isAlive = true;
                 food.fadeTimer = 0;
 
-                printf("x=%d y=%d", food.pos.x, food.pos.y);
-                
+                printf("x=%f y=%f\r\n", food.pos.x, food.pos.y);
+
                 ctx.foods[ctx.foodCount - 1] = food;
                 ctx.foodSpawnTimer = ctx.foodSpawnInterval;
             }
@@ -68,24 +68,31 @@ int main() {
             }
         }
 
+        // 碰到消失
+
+        for (int i = 0; i < ctx.foodCount; i++) {
+            FoodEntity *food = &ctx.foods[i];
+            if (food->pos.x >= (ctx.snake.bodies->x) * ctx.snake.size &&
+                food->pos.x <= (ctx.snake.bodies->x) * ctx.snake.size + ctx.snake.size &&
+                food->pos.y >= (ctx.snake.bodies->y) * ctx.snake.size &&
+                food->pos.y <= (ctx.snake.bodies->y) * ctx.snake.size + ctx.snake.size) {
+
+                Snake_Eat(&ctx.snake);
+                food->isAlive = false;
+                printf("%d\r\n", ctx.snake.bodycount);
+            }
+        }
         // 消失 换位置
-        for (int i = ctx.foodCount - 1; i > 0; i--) {
+        for (int i = ctx.foodCount - 1; i >= 0; i--) {
             FoodEntity food = ctx.foods[i];
             if (!food.isAlive) {
+
                 ctx.foods[i] = ctx.foods[ctx.foodCount - 1];
                 ctx.foods[ctx.foodCount - 1] = food;
                 ctx.foodCount -= 1;
             }
         }
-
-        // 碰到消失
-
-        for (int i = 0; i < ctx.foodCount; i++) {
-            FoodEntity *food = &ctx.foods[i];
-            if (food->pos.x == ctx.snake.bodies->x && food->pos.y == ctx.snake.bodies->y) {
-                Snake_Eat(&ctx.snake);
-            }
-        }
+        
 
         Draw_All(&ctx);
         EndDrawing();

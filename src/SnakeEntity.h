@@ -19,7 +19,6 @@ void Snake_Eat(SnakeEntity *snake) {
     snake->bodies[snake->bodycount - 1] = snake->bodies[snake->bodycount - 2];
 }
 
-
 void Snake_Move(SnakeEntity *snake, Vector2 moveAxis) {
     Vector2 *bodies = snake->bodies;
     Vector2 *posptr = &bodies[0];
@@ -39,9 +38,8 @@ void Snake_Draw(SnakeEntity *snake) {
 
         Vector2 pos = snake->bodies[i];
         pos = Vector2Scale(pos, size);
-        DrawRectangleV(pos,(Vector2){size, size}, snake->color);
+        DrawRectangleV(pos, (Vector2){size, size}, snake->color);
     }
 }
-
 
 #endif
