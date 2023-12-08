@@ -7,10 +7,10 @@ int Get_Rand(int min, int max) {
     return min + rand() % max;
 }
 
-Vector2 GetVecort_Rand() {
+Vector2 GetVecort_Rand(int gridWidth, int gridHeight) {
     Vector2 result = (Vector2){0};
-    result.x = Get_Rand(10, 390);
-    result.y = Get_Rand(10, 390);
+    result.x = Get_Rand(0, gridWidth);
+    result.y = Get_Rand(0, gridHeight);
     return result;
 }
 

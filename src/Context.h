@@ -18,6 +18,13 @@ typedef struct Context {
     int foodCount;
     float foodSpawnTimer;
     float foodSpawnInterval;
+
+    Vector2 startPos;
+    int windowWidth;
+    int windowHeight;
+    int gridWidth; // 棋盘宽
+    int gridHeight;
+    int cellDrawSize; // 每格尺寸
 } Context;
 
 void ContextInit(Context *ctx) {
@@ -27,12 +34,19 @@ void ContextInit(Context *ctx) {
     ctx->snakelongth = 1;
     SnakeEntity *snake = &ctx->snake;
     snake->color = RED;
-    snake->size = 15;
     snake->bodycount = 1;
 
-    ctx->foodCount=0;
-    ctx->foodSpawnInterval=4;
-    ctx->foodSpawnTimer=4;  
+    ctx->foodCount = 0;
+    ctx->foodSpawnInterval = 4;
+    ctx->foodSpawnTimer = 4;
+
+    ctx->windowWidth = 500;
+    ctx->windowHeight = 500;
+    ctx->gridWidth = 10;
+    ctx->gridHeight = 10;
+    ctx->cellDrawSize = 10;
+    ctx->startPos.x = (ctx->windowWidth - ctx->gridWidth * ctx->cellDrawSize) / 2;
+    ctx->startPos.y = (ctx->windowHeight - ctx->gridHeight * ctx->cellDrawSize) / 2;
 }
 
 #endif

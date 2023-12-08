@@ -14,10 +14,10 @@ typedef struct FoodEntity {
 
 } FoodEntity;
 
-
-void FoodEntity_Draw(FoodEntity *food) {
-    DrawCircle(food->pos.x, food->pos.y, food->radius, food->color);
+void FoodEntity_Draw(FoodEntity *food, Vector2 startPos, int cellDrawSize) {
+    Vector2 pos = Vector2Scale(food->pos, cellDrawSize);
+    pos = Vector2Add(startPos, pos);
+    DrawRectangleV(pos, (Vector2){cellDrawSize, cellDrawSize}, food->color);
 }
-
 
 #endif
