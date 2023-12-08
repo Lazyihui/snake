@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "..\include\raylib.h"
 #include "..\include\raymath.h"
+#include "Context.h"
 
 typedef struct SnakeEntity {
     Color color;
@@ -19,19 +20,35 @@ void Snake_Eat(SnakeEntity *snake) {
     snake->bodies[snake->bodycount - 1] = snake->bodies[snake->bodycount - 2];
 }
 
-void Snake_Move(Context *ctx, SnakeEntity *snake, Vector2 moveAxis) {
+void Snake_Move(SnakeEntity *snake, Vector2 moveAxis, int gridWidth, int gridHeight) {
     Vector2 *bodies = snake->bodies;
     Vector2 *posptr = Snake_Head(snake);
+    Vector2 nextPos = Vector2Add(*posptr, moveAxis);
+    if (nextPos.x < 0 || nextPos.x > gridWidth - 1) {
+        return;
+    }
+    if (nextPos.y < 0 || nextPos.y > gridWidth - 1) {
+        return;
+    }
+    // move
     Vector2 oldpos = *posptr;
-    *posptr = Vector2Add(*posptr, moveAxis);
+    *posptr = nextPos;
+
     for (int i = 1; i < snake->bodycount; i++) {
         Vector2 tmp = bodies[i];
         bodies[i] = oldpos;
         oldpos = tmp;
-    }
-    // if (Snake_Head(snake)->x > ctx->gridWidth || Snake_Head(snake)->x < ctx->gridWidth ||
-    //     Snake_Head(snake)->y > ctx->gridHeight || Snake_Head(snake)->y < ctx->gridHeight) {
+    } //
 
+    // if (posptr->x > gridWidth - 1) {
+    //     posptr->x = gridWidth - 1;
+    // } else if (posptr->x < 0) {
+    //     posptr->x = 0;
+    // }
+    // if (posptr->y > gridHeight - 1) {
+    //     posptr->y = gridHeight - 1;
+    // } else if (posptr->y < 0) {
+    //     posptr->y = 0;
     // }
 }
 

@@ -10,8 +10,7 @@ void Draw_All(Context *ctx) {
 
     int cellDrawSize = ctx->cellDrawSize;
     Vector2 startPos = ctx->startPos;
-    DrawRectangle(startPos.x, startPos.y, ctx->gridWidth * cellDrawSize,
-                  ctx->gridHeight * cellDrawSize, BLACK);
+    DrawRectangle(startPos.x, startPos.y, ctx->gridWidth * cellDrawSize, ctx->gridHeight * cellDrawSize, BLACK);
 
     SnakeEntity *snake = &ctx->snake;
     Snake_Draw(snake, startPos, cellDrawSize);
@@ -45,7 +44,7 @@ int main() {
         // 一顿一顿的移动
         if (ctx.snakeMoveTimer <= 0) {
             ctx.snakeMoveTimer = ctx.snakeMoveInterval;
-            Snake_Move(&ctx,snake, ctx.input.moveAxis);
+            Snake_Move(snake, ctx.input.moveAxis, ctx.gridWidth, ctx.gridHeight);
             // printf("snake.x=%d  sanke.y=%d\r\n",snake->bodies->x,snake->bodies->y);
         }
 
