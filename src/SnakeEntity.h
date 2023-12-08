@@ -19,6 +19,7 @@ void Snake_Eat(SnakeEntity *snake) {
     snake->bodies[snake->bodycount - 1] = snake->bodies[snake->bodycount - 2];
 }
 
+
 void Snake_Move(SnakeEntity *snake, Vector2 moveAxis) {
     Vector2 *bodies = snake->bodies;
     Vector2 *posptr = &bodies[0];
@@ -31,6 +32,7 @@ void Snake_Move(SnakeEntity *snake, Vector2 moveAxis) {
     }
 }
 // 逻辑和表现分离
+
 void Snake_Draw(SnakeEntity *snake) {
     float size = snake->size;
     for (int i = 0; i < snake->bodycount; i++) {

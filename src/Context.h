@@ -14,11 +14,10 @@ typedef struct Context {
     float snakeMoveTimer;
     float snakeMoveInterval;
 
-    FoodEntity foods[10];
+    FoodEntity foods[100];
     int foodCount;
     float foodSpawnTimer;
     float foodSpawnInterval;
-
 } Context;
 
 void ContextInit(Context *ctx) {
@@ -32,8 +31,8 @@ void ContextInit(Context *ctx) {
     snake->bodycount = 1;
 
     ctx->foodCount=0;
-    ctx->foodSpawnInterval=5;
-    ctx->foodSpawnTimer=5;
+    ctx->foodSpawnInterval=4;
+    ctx->foodSpawnTimer=4;  
 }
 
 #endif
