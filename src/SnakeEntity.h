@@ -20,14 +20,16 @@ void Snake_Eat(SnakeEntity *snake) {
     snake->bodies[snake->bodycount - 1] = snake->bodies[snake->bodycount - 2];
 }
 
-void Snake_Move(SnakeEntity *snake, Vector2 moveAxis, int gridWidth, int gridHeight) {
+void Snake_Move(SnakeEntity *snake, Vector2 moveAxis, int gridWidth, int gridHeight, int gameStatus) {
     Vector2 *bodies = snake->bodies;
     Vector2 *posptr = Snake_Head(snake);
     Vector2 nextPos = Vector2Add(*posptr, moveAxis);
     if (nextPos.x < 0 || nextPos.x > gridWidth - 1) {
+        gameStatus == 1;
         return;
     }
     if (nextPos.y < 0 || nextPos.y > gridWidth - 1) {
+        gameStatus == 1;
         return;
     }
     // move
@@ -38,18 +40,7 @@ void Snake_Move(SnakeEntity *snake, Vector2 moveAxis, int gridWidth, int gridHei
         Vector2 tmp = bodies[i];
         bodies[i] = oldpos;
         oldpos = tmp;
-    } //
-
-    // if (posptr->x > gridWidth - 1) {
-    //     posptr->x = gridWidth - 1;
-    // } else if (posptr->x < 0) {
-    //     posptr->x = 0;
-    // }
-    // if (posptr->y > gridHeight - 1) {
-    //     posptr->y = gridHeight - 1;
-    // } else if (posptr->y < 0) {
-    //     posptr->y = 0;
-    // }
+    }
 }
 
 // 逻辑和表现分离

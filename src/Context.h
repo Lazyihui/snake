@@ -25,6 +25,8 @@ typedef struct Context {
     int gridWidth; // 棋盘宽
     int gridHeight;
     int cellDrawSize; // 每格尺寸
+
+    int Gamestatus;
 } Context;
 
 void ContextInit(Context *ctx) {
@@ -42,11 +44,13 @@ void ContextInit(Context *ctx) {
 
     ctx->windowWidth = 500;
     ctx->windowHeight = 500;
-    ctx->gridWidth = 10;
-    ctx->gridHeight = 10;
+    ctx->gridWidth = 30;
+    ctx->gridHeight = 30;
     ctx->cellDrawSize = 10;
     ctx->startPos.x = (ctx->windowWidth - ctx->gridWidth * ctx->cellDrawSize) / 2;
     ctx->startPos.y = (ctx->windowHeight - ctx->gridHeight * ctx->cellDrawSize) / 2;
+
+    ctx->Gamestatus = 0;
 }
 
 #endif
